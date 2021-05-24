@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas</title>
+    <style>
+        body{
+            margin:0;
+            overflow: hidden;
+        }
+        /* This helps to remove scrollbar given by canvas website */
+    </style>
+</head>
+<body>
+    <canvas id='board'></canvas>
+    <!-- for creating canvas->it just a drawing board and tool is just like a writing pen,stylus on it -->
+
+</body>
+<script>
+    let board=document.querySelector('#board');//it gives a default board of default size on screen
+    board.height=window.innerHeight;//to set board height and width
+    board.width=window.innerWidth;
+    let tool=board.getContext('2d');//to use 2d,3d we use getContext
+    tool.fillStyle='green';//to fill color
+    tool.fillRect(10,10,board.width/2,board.height/2);//10,10 is position where rectangle forms and others are to give height and width
+    // fillRect is use to create rectangle
+    tool.fillStyle='violet'; 
+    tool.fillRect(40,40,board.width/2,board.height/2);
+    tool.strokeStyle='yellow';
+    tool.lineWidth=10;
+    tool.strokeRect(80,80,board.width/2,board.height/2);//for bordering
+
+    tool.beginPath();//means set location of pointer to (0,0)
+    tool.moveTo(200,300);
+    tool.strokeStyle='green';
+    tool.lineTo(250,600);//it does not print line just remember it and printed when we write tool.stroke() ;
+    tool.stroke();//to print the lines 
+
+    tool.beginPath();//means set location of pointer to (0,0)
+    tool.moveTo(500,500);
+    tool.strokeStyle='cyan';
+    tool.lineTo(600,600);//it does not print line just remember it and printed when  tool.stroke();
+    tool.stroke();//to print the lines 
+
+
+
+    
+</script>
+</html>
