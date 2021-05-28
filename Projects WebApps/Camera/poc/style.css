@@ -1,0 +1,26 @@
+*{
+    box-sizing: border-box;
+}
+.parent{
+    height: 5rem;
+    width: 60vw;
+    border: 2px solid;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 0 auto;
+    /* 0 means left and right space is equal */
+}
+.color{
+    height: 70%;
+    width: 30%;
+}
+.red{
+    background-color: red;
+}
+.blue{
+    background-color: blue;;
+}
+.green{
+    background-color: green;
+}

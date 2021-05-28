@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas_img</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body{
+            margin:0;
+            overflow: hidden;
+        }
+        /* This helps to remove scrollbar given by canvas website */
+        .image{
+            height: 20vh;
+            width: 15vw;
+        }
+    </style>
+</head>
+<body>
+    <img class="image" src="mona.jpg">
+    <canvas id='board'></canvas>
+    <script>
+    let board=document.querySelector('#board');//it gives a default board of default size on screen
+    board.height=window.innerHeight;//to set board height and width
+    board.width=window.innerWidth;
+    let tool=board.getContext('2d');//to use 2d,3d we use getContext
+    let img=document.querySelector('img');
+    img.addEventListener('load',function(){
+        //load loads the image
+        tool.drawImage(img,400,0);//it draws the image 
+    })
+
+    </script>
+</body>
+</html>

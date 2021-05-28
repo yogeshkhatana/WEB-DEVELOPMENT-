@@ -1,6 +1,7 @@
 let videoPlayer=document.querySelector('video');
 let videoRecordBtn=document.querySelector('#record-video');
 let constraints={video:true,audio:true};//for taking permissions from user
+let captureBtn=document.querySelector('#click-picture');
 let mediaRecorder;
 let recordState=false;
 let chunks=[];
@@ -47,4 +48,23 @@ navigator.mediaDevices.getUserMedia(constraints).then(function(mediaStream){//na
    }
 }).catch(function(err){
     console.log(err);
-})        
+}) 
+
+captureBtn.addEventListener('click',function(){
+    console.log('clicked');
+    capture();
+})
+function capture(){
+    let c=document.createElement('canvas');
+    c.width=videoPlayer.videoWidth;//it gives videoplayer width
+    c.height=videoPlayer.videoHeight;
+    let tool=c.getContext('2d');
+    
+    tool.drawImage(videoPlayer,0,0);//it draws the image but not appeared on screen bcoz don't added to dom
+    let link=document.createElement('a');
+    link.download='img.png';
+    link.href=c.toDataURL();//toDataURl gives url using canvas
+    link.click();
+    link.remove();
+    c.remove();
+}
