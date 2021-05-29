@@ -8,21 +8,36 @@ body{
     position: fixed;
     /* //means element goes to (0,0) */
     right: 6rem;
-    top: 45vh;
+    top: 36vh;
     border-radius: 50%;
     border: none;
-    height: 4rem;
-    width: 4rem;
+    height: 6rem;
+    width: 6rem;
+    background-color: black;
+    border: 8px solid white;
 
 }
 #click-picture{
-    height: 4rem;
-    width: 4rem;
+    height: 6rem;
+    width: 6rem;
     position: fixed;
     right: 6rem;
-    top: 56vh;
+    top: 52vh;
     border-radius: 50%;
-    border: none
+    border: 8px solid white;
+    background-color: black;
+}
+#record-div,#click-div{
+    height: 70%;
+    width: 80%;
+    margin: auto;
+    border-radius: 50%;
+}
+#record-div{
+    background-color: red;
+}
+#click-div{
+    background-color: white;
 }
 .video-container{
     height: 100vh;
@@ -35,3 +50,71 @@ video{
     height: 100%;
     width: 100%;
 }    
+.filter-container{
+    border: 1px solid white;
+    position: fixed;
+    top: 12vh;
+    left: 5.3vw;
+    height: 60vh;
+    width: 5.5vw;
+    display: flex;
+    flex-direction: column;
+    
+
+
+}
+.filter{
+    border: 1px solid white;
+    height: 20%;
+    background: url(https://images.unsplash.com/photo-1591526038358-0e3d334fb8c0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=100
+    );
+    background-size: cover;
+    /* for covering the whole div */
+    background-blend-mode: color-burn;
+    /* for mixing the background-image and color */
+
+}
+
+.recording-animation{
+    animation: shrinkInOut 0.8s infinite;
+}
+.capture-animation{
+    animation: shrinkInOut 1s;
+}
+
+@keyframes shrinkInOut {
+    0%{
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(1.2);
+    }
+    100%{
+        transform: scale(1);
+    }
+    
+}
+#record-video,#click-picture,.filter-container{
+    z-index:1;
+    /* z index helps in case of overlapping when multiple layers are there so it makes layer up having max z index */
+    /* z index works above 1 */
+}
+
+.zoom{
+    height: 15vh;
+    width: 4vw;
+    z-index: 1;
+    position: fixed;
+    top: 12vh;
+    right: 6vh;
+    display: flex;
+    flex-direction: column;
+}
+.zoom button{
+    color: white;
+    background-color: black;
+    border: none;
+    outline: none;
+    height: 50%;
+    font-size:3.5rem ;   
+}

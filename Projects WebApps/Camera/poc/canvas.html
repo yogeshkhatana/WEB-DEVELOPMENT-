@@ -28,6 +28,9 @@
 <script>
     let parent=document.querySelector('.parent');
     let board=document.querySelector('#board');//it gives a default board of default size on screen
+    let redBtn=document.querySelector('.red');
+    let greenBtn=document.querySelector('.green');
+    let blueBtn=document.querySelector('.blue');
     board.height=window.innerHeight;//to set board height and width
     board.width=window.innerWidth;
     let tool=board.getContext('2d');//to use 2d,3d we use getContext
@@ -97,6 +100,18 @@
         let obj=parent.getBoundingClientRect();//getBoundingClientRect() have a property which gives height
         return y-obj.height;
     }
+
+    //for color picking option
+    redBtn.addEventListener('click',function(){
+        tool.strokeStyle='red';
+    })
+    greenBtn.addEventListener('click',function(){
+        tool.strokeStyle='green';
+    })
+    blueBtn.addEventListener('click',function(){
+        tool.strokeStyle='blue';
+    })
+
     
 </script>
 </html>
