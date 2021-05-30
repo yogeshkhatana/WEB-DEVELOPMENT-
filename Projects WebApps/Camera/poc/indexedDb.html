@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    DB<input type="text" value="notes" id='txtDB'>
+    Version<input type="text" value="1" id='txtVersion'>
+    <button id='btnCreateDB'>Create DB</button>
+    <button id='add'>Add Notes</button>
+    
+
+</body>
+<script>
+    const btnCreateDB=document.getElementById('btnCreateDB');
+    const addButton=document.getElementById('add');
+    let db;
+    btnCreateDB.addEventListener('click',function(){
+        createDB();
+    })
+
+    function createDB(){
+        let dbName=document.getElementById('txtDB').value;
+        let dbVersion=document.getElementById('txtVersion').value;
+        let req=indexedDB.open(dbName,dbVersion);
+        req.onupgradeneeded=function(e){
+            alert("upgrade was called");
+            db=req.result;//it gives a db object using result
+            db.createObjectStore('notes',{keyPath:'nId'});//for creating a object store inside indexedDb keyPath act as a key just as unique key
+        }
+        req.onsuccess=function(e){
+            alert('success was called');
+            db=req.result;
+            viewNotes();
+        }
+        req.onerror=function(e){
+            alert('error was called'+" "+e.target.error);
+        }
+    }
+
+    addButton.addEventListener('click',function(){
+        addNote();
+    })
+    function addNote(){
+        console.log('add');
+        //note is an object
+        let note={
+            nId:'abcdef',//nId should be given bcoz we mentioned it above otherwise error come
+            txt:'My First Note'
+        }
+        //transactions are used to add,delete and view the data->3 steps,mode->readwrite,readonly
+        let tx=db.transaction('notes','readwrite');
+        let notesStore=tx.objectStore('notes');
+        notesStore.add(note);
+    }
+
+    function viewNotes(){
+        let tx=db.transaction('notes','readonly');
+        let notes=tx.objectStore('notes');
+        let request=notes.openCursor();//openCursor is an object is used for accessing data/object one by one
+        request.onsuccess=function(e){
+            let cursor=request.result;
+            if(cursor)//means if cursor is valid
+            {
+                console.log('cursor');
+                console.log(cursor.value);//cursor.value used to extract things such as mId,etc.                
+                cursor.continue;//so that it will work for multiple entries
+            }
+        }
+
+    }
+</script>
+</html>

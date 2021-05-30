@@ -103,12 +103,14 @@ navigator.mediaDevices.getUserMedia(constraints).then(function(mediaStream){//na
        //type can be video,mp4,etc.
        //blob is an immutable file which gives binary/text file which is readable and can be processed
        chunks=[];
-       let blobUrl=URL.createObjectURL(blob);//for creating url from blob
-       var link=document.createElement('a');//creating anchor element
-       link.href=blobUrl;
-       link.download='video.mp4';
-       link.click();//so that link is clicked automatically 
-       link.remove();//to remove link that is anchor
+       
+       addMediaToGallery(blob,'video');
+    //    let blobUrl=URL.createObjectURL(blob);//for creating url from blob
+    //    var link=document.createElement('a');//creating anchor element
+    //    link.href=blobUrl;
+    //    link.download='video.mp4';
+    //    link.click();//so that link is clicked automatically 
+    //    link.remove();//to remove link that is anchor
 
 
 
@@ -150,10 +152,13 @@ function capture(filter){
     tool.translate(-c.width/2,-c.height/2); 
     tool.drawImage(videoPlayer,0,0);//it draws the image but not appeared on screen bcoz don't added to dom
     
-    let link=document.createElement('a');
-    link.download='img.png';
-    link.href=c.toDataURL();//toDataURl gives url using canvas
-    link.click();
-    link.remove();
+    // let link=document.createElement('a');
+    // link.download='img.png';
+    // link.href=c.toDataURL();//toDataURl gives url using canvas(convert into base64 form)
+    // link.click();
+    // link.remove();
+
+    //or using now
+    addMediaToGallery(c.toDataURL(),'img'); 
     c.remove();
 }
