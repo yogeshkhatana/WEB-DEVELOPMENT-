@@ -4,14 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='style.css'>
     <title>Document</title>
 </head>
-<body>
+<body style='background-color: black; display: flex; flex-wrap: wrap;
+justify-content: space-evenly;'>
+    <button class='gallery-back'>BACK</button>
     <script src="dbScript.js"></script>
     <script>
-        setTimeout(function(){
+    setTimeout(function(){
             viewMedia();
         },100);
+        let backBtn=document.querySelector('.gallery-back');
+        backBtn.addEventListener('click',function(){
+            location.assign('index.html');//it helps us to move to specified address passed into it
+        })
         //bcoz there is problem coming like viewMedia not loaded sometimes so timeout is used
     </script>
 </body>

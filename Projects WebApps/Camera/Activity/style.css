@@ -118,3 +118,26 @@ video{
     height: 50%;
     font-size:3.5rem ;   
 }
+#gallery-button{
+    position: fixed;
+    top: 520px;
+    left: 85px;
+    z-index: 2;
+    border-radius: 0.5rem;
+}
+.gallery-back{
+    position: fixed;
+    top: 50px;
+    left: 50px;
+    border-radius: 5rem;
+}
+
+
+.gallery-delete-button{
+    background-color:red;
+    
+}
+.gallery-download-button{
+    background-color: lightgreen;
+    
+}

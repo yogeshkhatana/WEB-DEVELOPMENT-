@@ -39,6 +39,7 @@ function viewMedia(){
                 let downloadBtn=document.createElement('button');
                 downloadBtn.classList.add('gallery-download-button');
                 downloadBtn.innerText='Download';
+                downloadBtn.addEventListener('click',downloadBtnHandler);
                 videoContainer.appendChild(deleteBtn);
                 videoContainer.appendChild(downloadBtn);
                 video.controls=true;
@@ -60,6 +61,7 @@ function viewMedia(){
                 let downloadBtn=document.createElement('button');
                 downloadBtn.classList.add('gallery-download-button');
                 downloadBtn.innerText='Download';
+                downloadBtn.addEventListener('click',downloadBtnHandler);
                 imgContainer.appendChild(deleteBtn);
                 imgContainer.appendChild(downloadBtn);
                 body.appendChild(imgContainer);
@@ -81,4 +83,19 @@ function deleteBtnHandler(e){
     let mId=e.currentTarget.parentNode.getAttribute('data-mId');//mId is parent of delete button thats why
     deleteMediaFromGallery(mId);
     e.currentTarget.parentNode.remove();//it deletes the mId div completely from dom
+}
+
+function downloadBtnHandler(e){
+    let a=document.createElement('a');
+    a.href=e.currentTarget.parentNode.children[0].src;//parenttNode.children gives children array of parentNode
+    // taking 0th children bcoz it is the video or image of the container\
+    if(e.currentTarget.parentNode.children[0].nodeName=='IMG'){
+        // nodeName gives us name of node eg->Img,video
+        a.download='image.png';//giving name that is to be downloaded
+    }else{
+        a.download='video.mp4';
+        //means if it is not an image so it is a video
+    }
+    a.click();
+    a.remove();
 }
