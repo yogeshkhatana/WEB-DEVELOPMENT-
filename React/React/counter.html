@@ -1,0 +1,65 @@
+<!-- Using Class Component->for dynamic -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                   <!-- For Detecting this link is used -->
+<script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script> 
+
+                   <!-- For implementation or run     -->
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+
+                      <!-- BAbel converts jsx into browser understandable form -->
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <title>Document</title>
+</head>
+<body>
+    <div id='root'></div>
+</body>
+<script type="text/babel">
+    
+    //for making class a react component we use extends React.Component
+    class Counter extends React.Component{
+          
+        constructor(){
+            super();//these 2 steps gives us this of parent class  
+            //super is a keyword to call parent class constructor 
+            //when there is change so only render and return run 
+            //here object of class is internally handled by react
+            this.state={
+                count:0
+                //state of any component holds the data which whenever changes so ui also changed
+            }
+        }
+         increment=()=>{//here we used arrow function bcoz here increment func called by button but we need this not of button we need of parent or lexical superior
+            //  this.state.count=this.state.count+1;    //Don't use this bcoz react not able to track the changes so changes not reflect to ui
+             this.setState({count:this.state.count+1});//Use this one instead
+
+         }
+
+         decrement=()=>{
+             this.setState({count:this.state.count-1});
+         }
+            render()
+            {
+                return(
+                  <React.Fragment>
+                    <h1>{this.state.count}</h1>
+                    <button onClick={this.increment}>+</button>
+                    <button onClick={this.decrement}>-</button>
+                    {/* Adding event listener in react as above */}
+                    </React.Fragment>
+                )
+            }
+        }
+    ReactDOM.render(<Counter/>,document.getElementById('root'));  
+    // <Counter></Counter> and <Counter/> both are same meaning second one is self enclosing and first one used when we need to pass something inside it
+</script>
+</html>
+
+<!-- If here we need props so pass props in constructor and super and console.log in render and give value from ReactDOM.render(<Counter name='Yogesh'/>) -->

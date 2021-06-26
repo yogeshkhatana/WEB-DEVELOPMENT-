@@ -1,0 +1,80 @@
+<!-- Using Functional Component ->for making static -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     
+                      <!-- For Detecting this link is used -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script> 
+
+                           <!-- For implementation or run     -->
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+
+                              <!-- BAbel converts jsx into browser understandable form -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <title>Document</title>
+</head>
+<body>
+    <div id='root'></div>
+    <script type='text/babel'>
+
+
+
+    // function Hello(props){//Functional component in react
+    //     console.log(props);//props is a by default object provided by React, when arguments paased to functional component arguments attached to props object automatically
+    //     console.log(props.person);
+    //     return (
+    //         <div>
+    //             {/* div used here for wrapping multiple things
+    //             we can also used React.Fragment instead of this it wrap without html elements*/}
+    //             <h1>Hello From React {props.person}</h1>
+    //             <p>We Are Learning {props.person} Today</p>
+    //         </div>
+    //          /* Here in react we don't need to use bactick and dollar instead we use normal curly braces */
+
+    //     )
+    // }
+
+
+                        //  Or Using destructuring in functional component
+
+
+        function Hello({person:abcd='Anonymous'})
+        {//Here we using destructuring alias and giving default values
+             console.log(abcd);
+              return (
+                 <div>
+                   
+                    <h1>Hello From React {abcd}</h1>
+                    <p>We Are Learning {abcd} Today</p>
+                   
+                </div>
+                /* Here in react we don't need to use bactick and dollar instead we use normal curly braces */
+                )
+        }
+    
+    
+
+
+    // using Hellos for looping or to call hello again and again
+    function Hellos(){
+        return(
+            <React.Fragment>
+            {/*Calling hello function   and passing arguments*/}
+                <Hello person='Yogesh' something='nothing'/>
+                <Hello person='Tushar'/>
+                <Hello/>
+                <Hello/>
+            </React.Fragment>    
+
+        )
+    }
+    ReactDOM.render(<Hellos></Hellos>,document.getElementById('root'));//Just for attaching things to dom
+    //render takes things which we want to show on screen
+    </script>
+</body>
+</html>
