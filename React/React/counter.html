@@ -57,7 +57,34 @@
                 )
             }
         }
-    ReactDOM.render(<Counter/>,document.getElementById('root'));  
+
+      //For making 2 different class components that are independent  
+        class Counters extends React.Component{
+            constructor(){
+                super();
+            }
+            render(){
+                return(
+                    <React.Fragment>
+                      <Counter/>
+                      <Counter/>
+                    </React.Fragment>
+                )
+            }
+        }
+
+        /////////////OR//////////////
+
+        // function Counters(props)
+        // {
+        //     return(
+        //         <React.Fragment>
+        //             <Counter/>
+        //             <Counter/>
+        //         </React.Fragment>    
+        //     )
+        // }
+    ReactDOM.render(<Counters/>,document.getElementById('root'));  
     // <Counter></Counter> and <Counter/> both are same meaning second one is self enclosing and first one used when we need to pass something inside it
 </script>
 </html>
